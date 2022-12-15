@@ -13,6 +13,7 @@
     xmlns:owl="http://www.w3.org/2002/owl#"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
     xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+    xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
 >
 
 
@@ -45,6 +46,8 @@
         in the Tham Luang cave rescue. In 2022, Musk agreed to purchase Twitter for $44 billion but later submitted a termination letter of the deal, leading 
         to lawsuits between both parties.
     </dbo:abstract>
+
+        <foaf:homepage rdf:resource="http://commons.wikimedia.org/wiki/Special:FilePath/Elon_Musk_Royal_Society_(crop2).jpg?width=300" />
 
         <dbo:award rdf:resource="http://dbpedia.org/resource/List_of_awards_and_honors_received_by_Elon_Musk" />
 
@@ -82,5 +85,11 @@
 
     </rdf:Description>
 
+    <rdf:Description rdf:about="https://dbpedia.org/page/Pretoria">
+        <geo:lat rdf:datatype="http://www.w3.org/2001/XMLSchema#float">
+            -25.746111
+        </geo:lat>
+        <geo:long rdf:datatype="http://www.w3.org/2001/XMLSchema#float">28.188055 </geo:long>
+    </rdf:Description>
 
 </rdf:RDF>

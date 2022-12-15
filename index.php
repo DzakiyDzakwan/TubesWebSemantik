@@ -1,3 +1,52 @@
+<?php
+require 'vendor/autoload.php';
+
+use EasyRdf\RdfNamespace;
+\EasyRdf\RdfNamespace::set('rdf', 'http://www.w3.org/1999/02/22-rdf-syntax-ns#');
+    \EasyRdf\RdfNamespace::set('rdfs', 'http://www.w3.org/2000/01/rdf-schema#');
+    \EasyRdf\RdfNamespace::set('owl', 'http://www.w3.org/2002/07/owl#');
+    \EasyRdf\RdfNamespace::set('dc', 'http://purl.org/dc/elements/1.1/');
+    \EasyRdf\RdfNamespace::set('dbo', 'https://dbpedia.org/page#');
+    \EasyRdf\RdfNamespace::set('dbp', 'http://dbpedia.org/property#');
+    \EasyRdf\RdfNamespace::set('dbr', 'http://dbpedia.org/resource#');
+    \EasyRdf\RdfNamespace::set('xsd', 'http://www.w3.org/2001/XMLSchema#');
+    \EasyRdf\RdfNamespace::set('skos', 'http://www.w3.org/2004/02/skos/core#');
+    \EasyRdf\RdfNamespace::set('geo', 'http://www.w3.org/2003/01/geo/wgs84_pos#');
+    \EasyRdf\RdfNamespace::setDefault('og');
+
+    $link = new \EasyRdf\Sparql\Client('http://localhost:3030/tubesWs/query');
+
+    $map_query = '
+      SELECT ?latitude ?longitude WHERE {
+        ?s <http://www.w3.org/2003/01/geo/wgs84_pos#long> ?longitude.
+        ?s <http://www.w3.org/2003/01/geo/wgs84_pos#lat> ?latitude.
+      }
+    ';
+
+    $abstract_query = '
+      SELECT ?abstract WHERE {
+        ?s dbo:abstract ?abstract.
+      }
+    ';
+
+    $result_map = $link->query($map_query);
+    $result_abstract = $link->query($abstract_query);
+
+    $longitude;
+    $latitude; 
+    $abstract;
+
+    foreach ($result_map as $item) {
+      $longitude = $item->longitude;
+      $latitude =  $item->latitude;
+    }
+
+    foreach ($result_abstract as $item) {
+      $abstract = $item->abstract;
+    }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -84,11 +133,6 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
-
-  <?php
-   $latitude =-17;
-   $longitude = 30;
-    ?>
 
   <script>
     var map = L.map('map').setView([<?=$latitude?>, <?=$longitude?>], 13);
