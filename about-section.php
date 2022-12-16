@@ -5,7 +5,7 @@
           <div class="col-lg-4 ">
             <div class="div-img-bg">
               <div class="about-img">
-                <img src="http://commons.wikimedia.org/wiki/Special:FilePath/Elon_Musk_Royal_Society_(crop2).jpg"
+                <img src= <?=$picture?>
                   class="img-responsive" alt="me">
               </div>
             </div>
@@ -36,7 +36,7 @@
                 <li>
                   Family :
                   <ul>
-                    <li>Father : Errol Musk</li>
+                    <li>Father : <?=$father?></li>
                     <li>Mother : Maye Musk</li>
                   </ul>
                 </li>

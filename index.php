@@ -16,13 +16,16 @@ use EasyRdf\RdfNamespace;
 
     $link = new \EasyRdf\Sparql\Client('http://localhost:3030/tubesWs/query');
 
+    $elon_URI = 'https://dbpedia.org/page/Elon_Musk';
+
     $about_query = '
-      SELECT ?birthOn ?birthDate ?education ?father ?mother WHERE {
-        ?s dbo:birthPlace ?birthOn.
+      SELECT ?birthOn ?birthDate ?education ?father ?mother ?picture WHERE {
+       <'. $elon_URI .'> dbo:birthPlace ?birthOn.
         ?s dbo:birthDate ?birthDate.
         ?s dbo:education ?education.
         ?s dbp:father ?father.
         ?s dbp:mother ?mother.
+        ?s dbo:thumbnail ?picture.
       }
       ';
 
@@ -61,6 +64,7 @@ use EasyRdf\RdfNamespace;
     $latitude; 
     $abstract;
     $name;
+    $picture;
     
     foreach ($result_map as $item) {
       $longitude = $item->longitude;
@@ -81,7 +85,8 @@ use EasyRdf\RdfNamespace;
       $birthDate = $item->birthDate;
       $education = $item->education;
       $mother = $item->mother;
-      $father = $item->father; 
+      $father = $item->father;
+      $picture = $item->picture; 
     }
 
 ?>
