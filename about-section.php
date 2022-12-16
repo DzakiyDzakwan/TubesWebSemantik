@@ -13,11 +13,11 @@
 
           <div class="col-lg-7">
             <div class="about-descr">
-              <h2>Elon Musk</h2>
+              <h2><?=$name?></h2>
               <ul>
-                <li>Birth Name : Elon Reeve Musk</li>
-                <li>BirthOn : Transval Province, 1971-01-01</li>
-                <li>Education : University of Pennsylvania, Bachelor of Science</li>
+                <li>Birth Name : <?=$birthName?></li>
+                <li>BirthOn : <?=$birthOn?>, <?=$birthDate?></li>
+                <li>Education : <?=$education?></li>
                 <li>
                   Relative :
                   <ul>

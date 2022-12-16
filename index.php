@@ -16,6 +16,23 @@ use EasyRdf\RdfNamespace;
 
     $link = new \EasyRdf\Sparql\Client('http://localhost:3030/tubesWs/query');
 
+    $about_query = '
+      SELECT ?birthOn ?birthDate ?education ?father ?mother WHERE {
+        ?s dbo:birthPlace ?birthOn.
+        ?s dbo:birthDate ?birthDate.
+        ?s dbo:education ?education.
+        ?s dbp:father ?father.
+        ?s dbp:mother ?mother.
+      }
+      ';
+
+    $hero_query = '
+      SELECT ?birthName ?name WHERE {
+        ?s foaf:name ?name.
+        ?s dbo:birthName ?birthName.
+      }
+      ';
+
     $map_query = '
       SELECT ?latitude ?longitude WHERE {
         ?s <http://www.w3.org/2003/01/geo/wgs84_pos#long> ?longitude.
@@ -31,11 +48,20 @@ use EasyRdf\RdfNamespace;
 
     $result_map = $link->query($map_query);
     $result_abstract = $link->query($abstract_query);
+    $result_hero = $link->query($hero_query);
+    $result_about = $link->query($about_query);
 
+    $birthOn;
+    $birthDate;
+    $education;
+    $mother;
+    $father;
+    $birthName;
     $longitude;
     $latitude; 
     $abstract;
-
+    $name;
+    
     foreach ($result_map as $item) {
       $longitude = $item->longitude;
       $latitude =  $item->latitude;
@@ -43,6 +69,19 @@ use EasyRdf\RdfNamespace;
 
     foreach ($result_abstract as $item) {
       $abstract = $item->abstract;
+    }
+
+    foreach ($result_hero as $item){
+      $name = $item ->name;
+      $birthName = $item->birthName;
+    }
+
+    foreach ($result_about as $item){
+      $birthOn = $item->birthOn;
+      $birthDate = $item->birthDate;
+      $education = $item->education;
+      $mother = $item->mother;
+      $father = $item->father; 
     }
 
 ?>
