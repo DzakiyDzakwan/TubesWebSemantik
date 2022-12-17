@@ -65,9 +65,20 @@
 
         <dbo:partner rdf:resource="http://dbpedia.org/resource/Grimes" />
 
-        <dbo:relative rdf:resource="http://dbpedia.org/resource/Kimbal_Musk" />
+        <foaf:rname1> Kimbal Musk </foaf:rname1>
+        <foaf:pic1> http://commons.wikimedia.org/wiki/Special:FilePath/KIMBAL_MUSK_OFFICIAL_HEADSHOT.jpg?width=300 </foaf:pic1>
+              
+        <foaf:rname2> Tosca Musk </foaf:rname2>
+        <foaf:pic2> http://commons.wikimedia.org/wiki/Special:FilePath/Tosca-Musk_Founder-CEO_Passionflix_March_1_2019.jpg?width=300 </foaf:pic2>
+   
+        <foaf:rname3> Lyndon Rive </foaf:rname3>
+        <foaf:pic3> http://commons.wikimedia.org/wiki/Special:FilePath/Lyndon_Rive_2015.jpg?width=300 </foaf:pic3>
+            
+        
+
+        <!-- <dbo:relative rdf:resource="http://dbpedia.org/resource/Kimbal_Musk" />
         <dbo:relative rdf:resource="http://dbpedia.org/resource/Tosca_Musk" />
-        <dbo:relative rdf:resource="http://dbpedia.org/resource/Lyndon_Rive" />
+        <dbo:relative rdf:resource="http://dbpedia.org/resource/Lyndon_Rive" /> -->
 
         <dbo:spouse rdf:resource="http://dbpedia.org/resource/Talulah_Riley" />
         <dbo:spouse rdf:resource="http://dbpedia.org/resource/Justine_Musk" />

@@ -14,12 +14,12 @@
               <div class="journal-info">
                 <a href="blog-single.html">
                   <img
-                    src="http://commons.wikimedia.org/wiki/Special:FilePath/KIMBAL_MUSK_OFFICIAL_HEADSHOT.jpg?width=300"
+                    src=<?=$pic1?>
                     class="img-responsive" alt="img">
                   </a>
 
                 <div class="journal-txt">
-                  <h4><a href="blog-single.html">Kimbal Musk</a></h4>
+                  <h4><a href="blog-single.html"><?=$rname1?></a></h4>
                 </div>
 
               </div>
@@ -29,12 +29,12 @@
               <div class="journal-info">
 
                 <a href="blog-single.html"><img
-                    src="http://commons.wikimedia.org/wiki/Special:FilePath/Tosca-Musk_Founder-CEO_Passionflix_March_1_2019.jpg?width=300"
+                    src=<?=$pic2?>
                     class="img-responsive" alt="img"></a>
 
                 <div class="journal-txt">
 
-                  <h4><a href="blog-single.html">Tosca Musk</a></h4>
+                  <h4><a href="blog-single.html"><?=$rname2?></a></h4>
 
 
                 </div>
@@ -45,12 +45,12 @@
               <div class="journal-info">
 
                 <a href="blog-single.html"><img
-                    src="http://commons.wikimedia.org/wiki/Special:FilePath/Lyndon_Rive_2015.jpg?width=300"
+                    src=<?=$pic3?>
                     class="img-responsive" alt="img"></a>
 
                 <div class="journal-txt">
 
-                  <h4><a href="blog-single.html">Lyndon Rive</a></h4>
+                  <h4><a href="blog-single.html"><?=$rname3?></a></h4>
 
 
                 </div>

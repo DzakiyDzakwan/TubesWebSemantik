@@ -49,10 +49,34 @@ use EasyRdf\RdfNamespace;
       }
     ';
 
+    $relative1_query ='
+      SELECT ?rname1 ?pic1 WHERE {
+        ?s foaf:rname1 ?rname1.
+        ?s foaf:pic1 ?pic1
+      }
+    ';
+
+    $relative2_query ='
+      SELECT ?rname2 ?pic2 WHERE {
+        ?s foaf:rname2 ?rname2.
+        ?s foaf:pic2 ?pic2
+      }
+    ';
+
+    $relative3_query ='
+      SELECT ?rname3 ?pic3 WHERE {
+        ?s foaf:rname3 ?rname3.
+        ?s foaf:pic3 ?pic3
+      }
+    ';
+
     $result_map = $link->query($map_query);
     $result_abstract = $link->query($abstract_query);
     $result_hero = $link->query($hero_query);
     $result_about = $link->query($about_query);
+    $result_relative1 = $link->query($relative1_query);
+    $result_relative2 = $link->query($relative2_query);
+    $result_relative3 = $link->query($relative3_query);
 
     $birthOn;
     $birthDate;
@@ -65,6 +89,12 @@ use EasyRdf\RdfNamespace;
     $abstract;
     $name;
     $picture;
+    $rname1;
+    $pic1;
+    $rname2;
+    $pic2;
+    $rname3;
+    $pic3;
     
     foreach ($result_map as $item) {
       $longitude = $item->longitude;
@@ -89,6 +119,20 @@ use EasyRdf\RdfNamespace;
       $picture = $item->picture; 
     }
 
+    foreach ($result_relative1 as $item) {
+      $rname1 = $item->rname1;
+      $pic1 = $item->pic1;
+    }
+
+    foreach ($result_relative2 as $item) {
+      $rname2 = $item->rname2;
+      $pic2 = $item->pic2;
+    }
+
+    foreach ($result_relative3 as $item) {
+      $rname3 = $item->rname3;
+      $pic3 = $item->pic3;
+    }
 ?>
 
 <!DOCTYPE html>
