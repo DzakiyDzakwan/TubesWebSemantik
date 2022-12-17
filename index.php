@@ -203,6 +203,10 @@ use EasyRdf\RdfNamespace;
     <?php include 'award-section.php' ?>
     <!-- End Award Section -->
 
+    <!-- ======= Chart ======= -->
+    <?php include 'chart-section.php' ?>
+    <!-- End Chart Section -->
+
     <!-- ======= Relative Section ======= -->
     <?php include 'relative-section.php' ?>
     <!-- ======= End Relative Section ======= -->
