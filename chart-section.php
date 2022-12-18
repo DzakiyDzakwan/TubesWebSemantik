@@ -1,13 +1,11 @@
-<!DOCTYPE html>
-<html>
+<div class="paddsection">
+    <div class="container">
+            <h1 class="text-center my-5">Wealth</h1>
+            <div id="chart_div"></div>
+    </div>
+</div>
 
-<head>
-</head>
-
-<body>
-  <script src="canvas2html.js"></script>
-    <div id="chart_div"></div>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
         google.charts.load('current', {
         'packages': ['corechart']
@@ -16,15 +14,16 @@
 
         function drawChart() {
         var data = google.visualization.arrayToDataTable([
-            ['Year', 'BEBAS', 'bebas2', 'bebas3'],
-            ['Statistic 1', 5000, 4000, 3000],
-            ['Statistic 2', 6000, 4000, 3000],
-            ['Statistic 3', 1000, 4000, 3000],
-            ['Statistic 4', 8100, 4000, 3000],
+            ['Year', 'Total(triliun)'],
+            ['2018', <?= $doc->get('wealth:year18') ?>],
+            ['2019', <?= $doc->get('wealth:year19') ?>],
+            ['2020', <?= $doc->get('wealth:year20') ?>],
+            ['2021', <?= $doc->get('wealth:year21') ?>],
+            ['2022', <?= $doc->get('wealth:year22') ?>]
         ]);
 
         var options = {
-            title: 'INI TEST ELONMUSK CHART',
+            title: 'Wealth Chart',
             hAxis: {
             title: 'Year',
             titleTextStyle: {
@@ -47,6 +46,3 @@
             })
         }
     </script>
-</body>
-
-</html>

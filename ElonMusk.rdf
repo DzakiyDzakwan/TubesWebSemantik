@@ -5,102 +5,35 @@
 <rdf:RDF
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-    xmlns:dbo="https://dbpedia.org/page#"
+    xmlns:dbo="http://dbpedia.org/ontology/"
     xmlns:dbr="http://dbpedia.org/resource#"
-    xmlns:dbp="http://dbpedia.org/property#"
+    xmlns:dbp="http://dbpedia.org/property/"
     xmlns:foaf="http://xmlns.com/foaf/0.1/"
-    xmlns:dc="http://purl.org/dc/elements/1.1/"
-    xmlns:owl="http://www.w3.org/2002/owl#"
+    xmlns:dc="http://purl.org/dc/terms/"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
     xmlns:skos="http://www.w3.org/2004/02/skos/core#"
     xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
->
+    xmlns:wealth="http://example.org/schema/wealth/"
+    xmlns:person="http://example.org/schema/person/">
 
+    <foaf:PersonalProfileDocument
+        rdf:about="http://localhost/tubesWS/ElonMusk.rdf">
+        <rdfs:label>Elon Musk</rdfs:label>
+        <foaf:maker rdf:resource="http://localhost/tubesWS/" />
+        <foaf:primaryTopic rdf:resource="http://localhost/tubesWS/" />
+    </foaf:PersonalProfileDocument>
 
     <rdf:Description
         rdf:about="https://dbpedia.org/page/Elon_Musk">
-
-        <dbo:thumbnail>http://commons.wikimedia.org/wiki/Special:FilePath/Elon_Musk_Royal_Society_(crop2).jpg?width=300</dbo:thumbnail>
-
-        <foaf:name xml:lang="en">Elon Musk</foaf:name>
-
-        <dbo:abstract>
-        Elon Reeve Musk FRS (/'i:lɒn/ EE-lon; born June 28, 1971) is a business magnate and investor. He is the founder, CEO, and Chief Engineer at SpaceX; 
-        angel investor, CEO, and product architect of Tesla, Inc.; founder of The Boring Company; and co-founder of Neuralink and OpenAI. With an estimated net worth 
-        of around $254.6 billion as of September 26, 2022, Musk is the wealthiest person in the world according to both the Bloomberg Billionaires Index and Forbes' 
-        real-time billionaires list. Musk was born in Pretoria, South Africa, where he grew up. He briefly attended the University of Pretoria before moving to Canada 
-        at age 17, acquiring citizenship through his Canadian-born mother. Two years later, he matriculated at Queen's University and transferred to the University of 
-        Pennsylvania, where he received bachelor's degrees in economics and physics. He moved to California in 1995 to attend Stanford University but decided instead 
-        to pursue a business career, co-founding the web software company Zip2 with his brother Kimbal. The startup was acquired by Compaq for $307 million in 1999. 
-        The same year, Musk co-founded online bank X.com, which merged with Confinity in 2000 to form PayPal. eBay bought PayPal in 2002, for $1.5 billion. In 2002, 
-        Musk founded SpaceX, an aerospace manufacturer and space transport services company, of which he serves as CEO and Chief Engineer. In 2004, he was an early 
-        investor in electric vehicle manufacturer Tesla Motors, Inc. (now Tesla, Inc.). He became its chairman and product architect, eventually assuming the position 
-        of CEO in 2008. In 2006, he helped create SolarCity, a solar energy company that was later acquired by Tesla and became Tesla Energy. In 2015, he co-founded 
-        OpenAI, a nonprofit research company promoting friendly artificial intelligence (AI). In 2016, he co-founded Neuralink, a neurotechnology company focused 
-        on developing brain-computer interfaces, and founded The Boring Company, a tunnel construction company. Musk has proposed a hyperloop high-speed vactrain 
-        transportation system and is the president of the Musk Foundation, which donates to scientific research and education. Musk has been criticized for making 
-        unscientific and controversial statements, such as spreading misinformation about the COVID-19 pandemic and promoting contentious perspectives regarding 
-        politics and various technologies, especially on Twitter. In 2018, the U.S. Securities and Exchange Commission (SEC) sued Musk for tweeting that he had 
-        secured funding for a private takeover of Tesla, which the SEC characterized as false and misleading. He settled with the SEC but did not admit guilt, 
-        and he temporarily stepped down from his Tesla chairmanship. In 2019, he won a defamation case brought against him by a British caver who had advised 
-        in the Tham Luang cave rescue. In 2022, Musk agreed to purchase Twitter for $44 billion but later submitted a termination letter of the deal, leading 
-        to lawsuits between both parties.
-    </dbo:abstract>
-
-        <foaf:homepage rdf:resource="http://commons.wikimedia.org/wiki/Special:FilePath/Elon_Musk_Royal_Society_(crop2).jpg?width=300" />
-
-        <dbo:award rdf:resource="http://dbpedia.org/resource/List_of_awards_and_honors_received_by_Elon_Musk" />
-
-        <dbo:birthDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">1971-06-28</dbo:birthDate>
-
-        <dbo:birthName xml:lang="en">Elon Reeve Musk</dbo:birthName>
-
-        <dbo:birthPlace rdf:resource="http://dbpedia.org/resource/Pretoria" />
-        <dbo:birthPlace rdf:resource="http://dbpedia.org/resource/Transvaal_(province)" />
-
-        <dbo:birthYear rdf:datatype="http://www.w3.org/2001/XMLSchema#gYear">1971-01-01</dbo:birthYear>
-
-        <dbo:education rdf:resource="http://dbpedia.org/resource/University_of_Pennsylvania" />
-        <dbo:education rdf:resource="http://dbpedia.org/resource/Bachelor_of_Science" />
-
-        <dbo:partner rdf:resource="http://dbpedia.org/resource/Grimes" />
-
-        <foaf:rname1> Kimbal Musk </foaf:rname1>
-        <foaf:pic1> http://commons.wikimedia.org/wiki/Special:FilePath/KIMBAL_MUSK_OFFICIAL_HEADSHOT.jpg?width=300 </foaf:pic1>
-              
-        <foaf:rname2> Tosca Musk </foaf:rname2>
-        <foaf:pic2> http://commons.wikimedia.org/wiki/Special:FilePath/Tosca-Musk_Founder-CEO_Passionflix_March_1_2019.jpg?width=300 </foaf:pic2>
-   
-        <foaf:rname3> Lyndon Rive </foaf:rname3>
-        <foaf:pic3> http://commons.wikimedia.org/wiki/Special:FilePath/Lyndon_Rive_2015.jpg?width=300 </foaf:pic3>
-            
-        
-
-        <!-- <dbo:relative rdf:resource="http://dbpedia.org/resource/Kimbal_Musk" />
-        <dbo:relative rdf:resource="http://dbpedia.org/resource/Tosca_Musk" />
-        <dbo:relative rdf:resource="http://dbpedia.org/resource/Lyndon_Rive" /> -->
-
-        <dbo:spouse rdf:resource="http://dbpedia.org/resource/Talulah_Riley" />
-        <dbo:spouse rdf:resource="http://dbpedia.org/resource/Justine_Musk" />
-
-        <dbp:family rdf:resource="http://dbpedia.org/resource/Musk_family" />
-
-        <dbp:father rdf:resource="http://dbpedia.org/resource/Errol_Musk" />
-
-        <dbp:mother rdf:resource="http://dbpedia.org/resource/Maye_Musk" />
-
-        <dbp:align xml:lang="en">Right</dbp:align>
-
-        <dbp:children rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">10</dbp:children>
-
-
     </rdf:Description>
 
-    <rdf:Description rdf:about="https://dbpedia.org/page/Pretoria">
-        <geo:lat rdf:datatype="http://www.w3.org/2001/XMLSchema#float">
-            -25.746111
-        </geo:lat>
-        <geo:long rdf:datatype="http://www.w3.org/2001/XMLSchema#float">28.188055 </geo:long>
-    </rdf:Description>
+    <person:elon rdf:about="http://localhost/tubesWS/">
+        <wealth:year18 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">291</wealth:year18>
+        <wealth:year19 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">326</wealth:year19>
+        <wealth:year20 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">359</wealth:year20>
+        <wealth:year21 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2209</wealth:year21>
+        <wealth:year22 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3204</wealth:year22>
+    </person:elon>
 
 </rdf:RDF>

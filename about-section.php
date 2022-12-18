@@ -1,3 +1,44 @@
+<?php 
+  $date = strtotime($data["birthDate"]);
+  $birthDate = date('d M Y', $date);
+
+  /* 
+  var_dump($data["picture"]);
+  echo "<br><br>";
+  \EasyRdf\RdfNamespace::setDefault('og');
+  $ogp = \EasyRdf\Graph::newAndLoad($data["picture"]);
+  var_dump($ogp); */
+  
+
+
+  $relative_query = "
+  Select ?relative WHERE {
+    ?s rdfs:label 'Elon Musk'@en.
+    ?s dbp:relatives ?relative
+     }
+  ";
+
+  $relatives = [];
+  $relative_result = $dbpedia_conn->query($relative_query);
+  foreach ($relative_result as $item) {
+    $relatives[] = $item->relative;
+  }
+
+  $spouse_query = "
+  Select ?spouse WHERE {
+    ?s rdfs:label 'Elon Musk'@en.
+    ?s dbo:spouse ?spouse
+     }
+  ";
+
+  $spouses = [];
+  $spouse_result = $dbpedia_conn->query($spouse_query);
+  foreach ($spouse_result as $item) {
+    $spouses[] = $item->spouse;
+  }
+
+?>
+
 <div id="about" class="paddsection">
       <div class="container">
         <div class="row justify-content-between">
@@ -5,7 +46,7 @@
           <div class="col-lg-4 ">
             <div class="div-img-bg">
               <div class="about-img">
-                <img src= <?=$picture?>
+                <img src= <?=$data["picture"]?>
                   class="img-responsive" alt="me">
               </div>
             </div>
@@ -13,31 +54,35 @@
 
           <div class="col-lg-7">
             <div class="about-descr">
-              <h2><?=$name?></h2>
+              <h2><?=$data["name"]?></h2>
               <ul>
-                <li>Birth Name : <?=$birthName?></li>
-                <li>BirthOn : <?=$birthOn?>, <?=$birthDate?></li>
-                <li>Education : <?=$education?></li>
+                <li>Birth Name : <?=$data["birthName"]?></li>
+                <li>Birt Date : <?=$birthDate?></li>
+                <li>Birth Place : <?=$data["birthPlace"]?></li>
+                <li>Education : <?=$data["education"]?></li>
                 <li>
                   Relative :
                   <ul>
-                    <li>Kimbal Musk</li>
-                    <li>Tosca Musk</li>
-                    <li>Lyndon Rive</li>
+                  <?php foreach($relatives  as $item) : ?>
+                    <?php if($item != "") :?>
+                      <li><?= $item?></li>
+                    <?php endif ; ?>
+                  <?php endforeach ; ?>
                   </ul>
                 </li>
                 <li>
                   Spouse :
                   <ul>
-                    <li>Talulah Riley</li>
-                    <li>Justine Musk</li>
+                  <?php foreach($spouses  as $item) : ?>
+                    <li><a href="<?= $item?>"><?php echo getName($item) ?></a></li>
+                  <?php endforeach ; ?>
                   </ul>
                 </li>
                 <li>
                   Family :
                   <ul>
-                    <li>Father : <?=$father?></li>
-                    <li>Mother : Maye Musk</li>
+                    <li>Father : <a href="<?=$data["father"]?>">Erol Musk</a></li>
+                    <li>Mother : <a href="<?=$data["mother"]?>"><?php echo getName($data["mother"]) ?></a></li>
                   </ul>
                 </li>
               </ul>
