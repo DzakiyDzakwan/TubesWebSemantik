@@ -4,8 +4,7 @@
 
           <div class="col-lg-12">
             <div class="about-descr">
-              <p> <?=$abstract?></p>
-
+              <?=$data['abstract']?>
             </div>
           </div>
         </div>

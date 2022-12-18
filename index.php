@@ -2,137 +2,99 @@
 require 'vendor/autoload.php';
 
 use EasyRdf\RdfNamespace;
-\EasyRdf\RdfNamespace::set('rdf', 'http://www.w3.org/1999/02/22-rdf-syntax-ns#');
+    \EasyRdf\RdfNamespace::set('rdf', 'http://www.w3.org/1999/02/22-rdf-syntax-ns#');
     \EasyRdf\RdfNamespace::set('rdfs', 'http://www.w3.org/2000/01/rdf-schema#');
     \EasyRdf\RdfNamespace::set('owl', 'http://www.w3.org/2002/07/owl#');
-    \EasyRdf\RdfNamespace::set('dc', 'http://purl.org/dc/elements/1.1/');
-    \EasyRdf\RdfNamespace::set('dbo', 'https://dbpedia.org/page#');
-    \EasyRdf\RdfNamespace::set('dbp', 'http://dbpedia.org/property#');
+    \EasyRdf\RdfNamespace::set('dc', 'http://purl.org/dc/terms/');
+    \EasyRdf\RdfNamespace::set('dbo', 'http://dbpedia.org/ontology/');
+    \EasyRdf\RdfNamespace::set('dbp', 'http://dbpedia.org/property/');
     \EasyRdf\RdfNamespace::set('dbr', 'http://dbpedia.org/resource#');
     \EasyRdf\RdfNamespace::set('xsd', 'http://www.w3.org/2001/XMLSchema#');
     \EasyRdf\RdfNamespace::set('skos', 'http://www.w3.org/2004/02/skos/core#');
     \EasyRdf\RdfNamespace::set('geo', 'http://www.w3.org/2003/01/geo/wgs84_pos#');
+    \EasyRdf\RdfNamespace::set('wealth', 'http://example.org/schema/wealth/');
+    \EasyRdf\RdfNamespace::set('person', 'http://example.org/schema/person/');
     \EasyRdf\RdfNamespace::setDefault('og');
 
-    $link = new \EasyRdf\Sparql\Client('http://localhost:3030/tubesWs/query');
+    //Connection to Jena Fuseki
+    $link = new \EasyRdf\Sparql\Client('http://localhost:3030/tubesWS/query');
 
-    $elon_URI = 'https://dbpedia.org/page/Elon_Musk';
+    //Connection to DBpedia
+    $dbpedia_endpoint = 'https://dbpedia.org/sparql';
+    $dbpedia_conn = new \EasyRdf\Sparql\Client($dbpedia_endpoint);
 
-    $about_query = '
-      SELECT ?birthOn ?birthDate ?education ?father ?mother ?picture WHERE {
-       <'. $elon_URI .'> dbo:birthPlace ?birthOn.
-        ?s dbo:birthDate ?birthDate.
-        ?s dbo:education ?education.
-        ?s dbp:father ?father.
-        ?s dbp:mother ?mother.
-        ?s dbo:thumbnail ?picture.
-      }
-      ';
-
-    $hero_query = '
-      SELECT ?birthName ?name WHERE {
-        ?s foaf:name ?name.
-        ?s dbo:birthName ?birthName.
-      }
-      ';
-
-    $map_query = '
-      SELECT ?latitude ?longitude WHERE {
-        ?s <http://www.w3.org/2003/01/geo/wgs84_pos#long> ?longitude.
-        ?s <http://www.w3.org/2003/01/geo/wgs84_pos#lat> ?latitude.
-      }
+    //Query
+    $elon_query = '
+    Select * WHERE {
+      ?s rdfs:label "Elon Musk"@en.
+      ?s dbo:abstract ?abstract.
+      ?s foaf:name ?name.
+      ?s dbo:thumbnail ?picture.
+      ?s dbo:birthName ?birthName.
+      ?s dbo:birthDate ?birthDate.
+      ?s dbo:birthYear ?birthYear.
+      ?s dbp:birthPlace ?birthPlace.
+      ?s dbp:family ?family.
+      ?s dbp:father ?father.
+      ?s dbp:mother ?mother.
+      ?s dbp:education ?education.
+      ?s dbo:birthPlace ?place
+      FILTER( LANG (?abstract) = "en")
+       }
+       LIMIT 1
     ';
 
-    $abstract_query = '
-      SELECT ?abstract WHERE {
-        ?s dbo:abstract ?abstract.
+    //Query Result
+    $result = $dbpedia_conn->query($elon_query);
+    $data = [];
+
+    //Tampung Result
+    foreach($result as $item) {
+      $data = [
+        'abstract' => $item->abstract,
+        'picture' => $item->picture,
+        'name' => $item->name,
+        'birthName' => $item->birthName,
+        'birthDate' => $item->birthDate,
+        'birthYear' => $item->birthYear,
+        'birthPlace' => $item->birthPlace,
+        'family' => $item->family,
+        'father' => $item->father,
+        'mother' => $item->mother,
+        'education' => $item->education,
+        'place' => $item->place
+
+      ];
+    }
+
+    //Fungsi untuk mengambil nama berdasarkan URI
+    function getName($uri) {
+      $query = "
+      Select  * WHERE {
+        <".$uri."> rdfs:label ?label;
+        dbo:birthName ?name.
+      FILTER (LANG(?label) = 'en')
+         }
+      ";
+
+      $dbpedia_endpoint = 'https://dbpedia.org/sparql';
+      $dbpedia_conn = new \EasyRdf\Sparql\Client($dbpedia_endpoint);
+
+      $data = [];
+      foreach ($dbpedia_conn->query($query) as $item) {
+        $data = [
+          "name" => $item->name
+        ];
       }
-    ';
 
-    $relative1_query ='
-      SELECT ?rname1 ?pic1 WHERE {
-        ?s foaf:rname1 ?rname1.
-        ?s foaf:pic1 ?pic1
-      }
-    ';
-
-    $relative2_query ='
-      SELECT ?rname2 ?pic2 WHERE {
-        ?s foaf:rname2 ?rname2.
-        ?s foaf:pic2 ?pic2
-      }
-    ';
-
-    $relative3_query ='
-      SELECT ?rname3 ?pic3 WHERE {
-        ?s foaf:rname3 ?rname3.
-        ?s foaf:pic3 ?pic3
-      }
-    ';
-
-    $result_map = $link->query($map_query);
-    $result_abstract = $link->query($abstract_query);
-    $result_hero = $link->query($hero_query);
-    $result_about = $link->query($about_query);
-    $result_relative1 = $link->query($relative1_query);
-    $result_relative2 = $link->query($relative2_query);
-    $result_relative3 = $link->query($relative3_query);
-
-    $birthOn;
-    $birthDate;
-    $education;
-    $mother;
-    $father;
-    $birthName;
-    $longitude;
-    $latitude; 
-    $abstract;
-    $name;
-    $picture;
-    $rname1;
-    $pic1;
-    $rname2;
-    $pic2;
-    $rname3;
-    $pic3;
-    
-    foreach ($result_map as $item) {
-      $longitude = $item->longitude;
-      $latitude =  $item->latitude;
+      return $data["name"];
     }
 
-    foreach ($result_abstract as $item) {
-      $abstract = $item->abstract;
-    }
+    //Connection To Local RDF
+    $local_endpoint = 'http://localhost/tubesWS/ElonMusk.rdf';
+    $local_conn = \EasyRdf\Graph::newAndLoad($local_endpoint);
+    $doc = $local_conn->primaryTopic();
 
-    foreach ($result_hero as $item){
-      $name = $item ->name;
-      $birthName = $item->birthName;
-    }
-
-    foreach ($result_about as $item){
-      $birthOn = $item->birthOn;
-      $birthDate = $item->birthDate;
-      $education = $item->education;
-      $mother = $item->mother;
-      $father = $item->father;
-      $picture = $item->picture; 
-    }
-
-    foreach ($result_relative1 as $item) {
-      $rname1 = $item->rname1;
-      $pic1 = $item->pic1;
-    }
-
-    foreach ($result_relative2 as $item) {
-      $rname2 = $item->rname2;
-      $pic2 = $item->pic2;
-    }
-
-    foreach ($result_relative3 as $item) {
-      $rname3 = $item->rname3;
-      $pic3 = $item->pic3;
-    }
 ?>
 
 <!DOCTYPE html>
@@ -199,16 +161,11 @@ use EasyRdf\RdfNamespace;
     <?php include 'map-section.php' ?>
     <!-- Map End -->
 
-    <!-- ======= Award ======= -->
-    <?php include 'award-section.php' ?>
-    <!-- End Award Section -->
-
     <!-- ======= Chart ======= -->
     <?php include 'chart-section.php' ?>
     <!-- End Chart Section -->
 
     <!-- ======= Relative Section ======= -->
-    <?php include 'relative-section.php' ?>
     <!-- ======= End Relative Section ======= -->
 
   </main>
@@ -225,16 +182,6 @@ use EasyRdf\RdfNamespace;
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
-
-  <script>
-    var map = L.map('map').setView([<?=$latitude?>, <?=$longitude?>], 13);
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 19,
-      attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-    }).addTo(map);
-    var marker = L.marker([<?=$latitude?>, <?=$longitude?>]).addTo(map);
-    marker.bindPopup("Elon Birth Here").openPopup();
-  </script>
 
 </body>
 
