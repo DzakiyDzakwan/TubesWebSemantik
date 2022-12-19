@@ -1,6 +1,7 @@
 <?php
 require 'vendor/autoload.php';
 
+//Name Space RDF
 use EasyRdf\RdfNamespace;
     \EasyRdf\RdfNamespace::set('rdf', 'http://www.w3.org/1999/02/22-rdf-syntax-ns#');
     \EasyRdf\RdfNamespace::set('rdfs', 'http://www.w3.org/2000/01/rdf-schema#');
@@ -17,7 +18,7 @@ use EasyRdf\RdfNamespace;
     \EasyRdf\RdfNamespace::setDefault('og');
 
     //Connection to Jena Fuseki
-    $link = new \EasyRdf\Sparql\Client('http://localhost:3030/tubesWS/query');
+    $link = new \EasyRdf\Sparql\Client('http://localhost:3030/tubesWs/query');
 
     //Connection to DBpedia
     $dbpedia_endpoint = 'https://dbpedia.org/sparql';
@@ -130,7 +131,6 @@ use EasyRdf\RdfNamespace;
   <!-- LeafletJs -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
     integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
-  <!-- Make sure you put this AFTER Leaflet's CSS -->
   <!-- Make sure you put this AFTER Leaflet's CSS -->
   <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
     integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>

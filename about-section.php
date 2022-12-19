@@ -8,9 +8,11 @@
   \EasyRdf\RdfNamespace::setDefault('og');
   $ogp = \EasyRdf\Graph::newAndLoad($data["picture"]);
   var_dump($ogp); */
+
+    /* \EasyRdf\RdfNamespace::setDefault('og');
+    $wiki_conn = \EasyRdf\Graph::newAndLoad($data["picture"]);
+    $image = $wiki_conn->image; */
   
-
-
   $relative_query = "
   Select ?relative WHERE {
     ?s rdfs:label 'Elon Musk'@en.
