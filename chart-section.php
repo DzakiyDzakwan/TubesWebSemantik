@@ -24,7 +24,7 @@
         ]);
 
         var options = {
-            title: 'Jumlah Kekayaan Bersih',
+            title: 'Total Net Worth',
             hAxis: {
             title: 'Year',
             titleTextStyle: {
