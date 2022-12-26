@@ -46,7 +46,7 @@
           <div class="col-lg-4 ">
             <div class="div-img-bg">
               <div class="about-img">
-                <img src= <?=$data["picture"]?>
+                <img src= "<?=$image_url?>"
                   class="img-responsive" alt="me">
               </div>
             </div>

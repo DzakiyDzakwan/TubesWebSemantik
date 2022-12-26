@@ -1,5 +1,6 @@
 <?php
 require 'vendor/autoload.php';
+require_once __DIR__."/html_tag_helpers.php";
 
 use EasyRdf\RdfNamespace;
     \EasyRdf\RdfNamespace::set('rdf', 'http://www.w3.org/1999/02/22-rdf-syntax-ns#');
@@ -14,6 +15,7 @@ use EasyRdf\RdfNamespace;
     \EasyRdf\RdfNamespace::set('geo', 'http://www.w3.org/2003/01/geo/wgs84_pos#');
     \EasyRdf\RdfNamespace::set('wealth', 'http://example.org/schema/wealth/');
     \EasyRdf\RdfNamespace::set('person', 'http://example.org/schema/person/');
+    \EasyRdf\RdfNamespace::set('foaf', 'http://xmlns.com/foaf/0.1/');
     \EasyRdf\RdfNamespace::setDefault('og');
 
     //Connection to Jena Fuseki
@@ -38,7 +40,8 @@ use EasyRdf\RdfNamespace;
       ?s dbp:father ?father.
       ?s dbp:mother ?mother.
       ?s dbp:education ?education.
-      ?s dbo:birthPlace ?place
+      ?s dbo:birthPlace ?place.
+      ?s foaf:isPrimaryTopicOf ?image.
       FILTER( LANG (?abstract) = "en")
        }
        LIMIT 1
@@ -62,10 +65,15 @@ use EasyRdf\RdfNamespace;
         'father' => $item->father,
         'mother' => $item->mother,
         'education' => $item->education,
-        'place' => $item->place
+        'place' => $item->place,
+        'image' => $item->image
 
       ];
     }
+
+    //ogp gambar dari wikipedia
+    $image = \EasyRdf\Graph::newAndLoad($data['image']);
+    $image_url = $image->image;
 
     //Fungsi untuk mengambil nama berdasarkan URI
     function getName($uri) {
@@ -165,8 +173,9 @@ use EasyRdf\RdfNamespace;
     <?php include 'chart-section.php' ?>
     <!-- End Chart Section -->
 
-    <!-- ======= Relative Section ======= -->
-    <!-- ======= End Relative Section ======= -->
+    <!-- ======= Award Section ======= -->
+    <?php include 'film-section.php' ?>
+    <!-- ======= End Award Section ======= -->
 
   </main>
   <!-- End #main -->
