@@ -1,6 +1,6 @@
 <div class="paddsection">
     <div class="container">
-            <h1 class="text-center my-5">Wealth</h1>
+            <h1 class="text-center my-5">Total Net Worth</h1>
             <div id="chart_div"></div>
     </div>
 </div>
@@ -15,7 +15,7 @@
 
         function drawChart() {
         var data = google.visualization.arrayToDataTable([
-            ['Year', 'Total(triliun)'],
+            ['Year', 'US$ Miliar'],
             ['2018', <?= $doc->get('wealth:year18') ?>],
             ['2019', <?= $doc->get('wealth:year19') ?>],
             ['2020', <?= $doc->get('wealth:year20') ?>],
@@ -24,7 +24,7 @@
         ]);
 
         var options = {
-            title: 'Wealth Chart',
+            title: 'Jumlah Kekayaan Bersih',
             hAxis: {
             title: 'Year',
             titleTextStyle: {

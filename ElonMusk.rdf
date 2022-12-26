@@ -27,16 +27,15 @@
 
     <rdf:Description
         rdf:about="http://localhost/tubesWS/">
-    
-            <wealth:year18 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">291</wealth:year18>
-            <wealth:year19 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">326</wealth:year19>
-            <wealth:year20 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">359</wealth:year20>
-            <wealth:year21 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2209</wealth:year21>
-            <wealth:year22 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3204</wealth:year22>
+        <wealth:year18 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">19.9</wealth:year18>
+        <wealth:year19 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">22.3</wealth:year19>
+        <wealth:year20 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">24.6</wealth:year20>
+        <wealth:year21 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">151</wealth:year21>
+        <wealth:year22 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">219</wealth:year22>
 
         <owl:sameAs>
             <elon:about rdf:about="https://www.imdb.com/">
-                <foaf:homepage rdf:resource="https://www.imdb.com/name/nm1907769/"/>
+                <foaf:homepage rdf:resource="https://www.imdb.com/name/nm1907769/" />
                 <elon:title>Video</elon:title>
             </elon:about>
         </owl:sameAs>
